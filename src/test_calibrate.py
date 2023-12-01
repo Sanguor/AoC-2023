@@ -8,7 +8,10 @@ test_data_54 ='''
     7chmvlhnpfive\n
 '''
 
+yacine = "./src/Yacine_input.txt"
+paul = "./src/Paul_input.txt"
+
 def test_calculate_sum():
-    expected_result = 54
-    result = calculate_sum(test_data_54)
+    expected_result = 55607
+    result = calculate_sum(yacine)
     assert result == expected_result
