@@ -20,31 +20,31 @@ import re
     are 12, 38, 15, and 77. Adding these together produces 142.
 '''
 
-lst = list()
-nbr = ""
-s = 0
+# lst = list()
+# nbr = ""
+# s = 0
 
-filin = open("Yacine_input.txt", "r")
-lst = filin.readlines()
-filin.close()
+# filin = open("Yacine_input.txt", "r")
+# lst = filin.readlines()
+# filin.close()
 
-for line in lst :
-    for c in line :
-        if c.isnumeric() :
-            if len(nbr) < 2 :
-                nbr += c
-            else :
-                tmp = list(nbr)
-                tmp[1] = c
-                nbr = "".join(tmp)
-    if len(nbr) == 1 :
-        nbr += nbr[0]
-    if len(nbr) == 0 :
-        nbr = "0"
-    s += int(nbr)
-    nbr = ""
+# for line in lst :
+#     for c in line :
+#         if c.isnumeric() :
+#             if len(nbr) < 2 :
+#                 nbr += c
+#             else :
+#                 tmp = list(nbr)
+#                 tmp[1] = c
+#                 nbr = "".join(tmp)
+#     if len(nbr) == 1 :
+#         nbr += nbr[0]
+#     if len(nbr) == 0 :
+#         nbr = "0"
+#     s += int(nbr)
+#     nbr = ""
 
-print(s)
+# print(s)
 
 ###                         Part 2
 
@@ -78,34 +78,36 @@ def Ajoute_nombre(c, nbr) :
         nbr = "".join(tmp)
 
 
-chiffre = {"zero" : "0", "one" : "1", "two" : "2", "three" : "3", "four" : "4", "five" : "5", "six" : "6", "seven" : "7", "eight" : "8", "nine" : "9"}
+chiffre = {"zero": "0", "one": "1", "two": "2", "three": "3", "four": "4", "five": "5", "six": "6", "seven": "7", "eight": "8", "nine": "9"}
 lst = list()
 nbr = ""
 test = list()
 s = 0
 
-filin = open("input.txt", "r")
-lst = filin.readlines()
-filin.close()
+print(chiffre[""])
+
+# filin = open("input.txt", "r")
+# lst = filin.readlines()
+# filin.close()
 
 
-for line in lst :
-    for i in chiffre :
-        if 
-    for c in line :
-        if c.isnumeric() :
-            Ajoute_nombre(c, nbr)
-        if c.isalpha() :
+# for line in lst :
+#     for i in chiffre :
+#         if line.find(chiffre[i])
+#     for c in line :
+#         if c.isnumeric() :
+#             Ajoute_nombre(c, nbr)
+#         if c.isalpha() :
             
             
-    if len(nbr) == 1 :
-        nbr += nbr[0]
-    if len(nbr) == 0 :
-        nbr = "0"
-    s += int(nbr)
-    nbr = ""
+#     if len(nbr) == 1 :
+#         nbr += nbr[0]
+#     if len(nbr) == 0 :
+#         nbr = "0"
+#     s += int(nbr)
+#     nbr = ""
 
-print(s)
+# print(s)
 
 # likes = "Sammy likes to swim in the ocean, likes to spin up servers, and likes to smile."
 # print(likes.find("likes"))
