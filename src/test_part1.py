@@ -1,9 +1,9 @@
-from calibrate import calculate_sum
+from trebuchet import calibrate
 
 yacine = "./src/Yacine_input.txt"
 paul = "./src/Paul_input.txt"
 
-def test_calculate_sum():
+def test_calibrate():
     expected_result = 55607
-    result = calculate_sum(yacine)
+    result = calibrate(yacine)
     assert result == expected_result

@@ -1,4 +1,4 @@
-from find import calibrate_superior
+from trebuchet import calibrate_superior
 
 yacine = "./src/Yacine_input.txt"
 paul = "./src/Paul_input.txt"
@@ -23,6 +23,9 @@ def test_calculate_example6():
     
 def test_calculate_example7():
     assert calibrate_superior('./src/__tests__/data_7.txt') == 76
+
+def test_calculate_example8():
+    assert calibrate_superior('./src/__tests__/data_8.txt') == 46
 
 def test_calculate_example_full():
     assert calibrate_superior('./src/__tests__/example_full.txt') == 281
