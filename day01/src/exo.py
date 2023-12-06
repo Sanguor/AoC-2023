@@ -87,8 +87,8 @@ def calibrate_superior(line):
 
 ###                     Main
 
-yacine = "./src/Yacine_input.txt"
-paul = "./src/Paul_input.txt"
+yacine = "Yacine_input.txt"
+paul = "Paul_input.txt"
 sY_1 = 0
 sY_2 = 0
 sP_1 = 0
@@ -105,7 +105,6 @@ file_paul.close()
 for line in lst_yacine:
     sY_1 += calibrate(line)
     sY_2 += calibrate_superior(line)
-
 
 for line in lst_paul:
     sP_1 += calibrate(line)
