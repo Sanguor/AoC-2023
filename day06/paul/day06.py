@@ -1,4 +1,4 @@
-### constants ### 
+### constants ###
 
 starting_speed = 0 # mm/ms
 speed_increase = 1 # mm/ms
@@ -12,7 +12,7 @@ def read_file_and_strip_newlines(file_path):
 
 def parse_lines(lines):
     parsed_lines = []
-    
+
     for line in lines:
         # _, l = line.split(':')
         res = [int(i) for i in line.split() if i.isdigit()]
@@ -45,7 +45,7 @@ def solve_part1(parsed_lines):
     for race_duration, race_distance in zip(durations, distances):
         possible_distances = calculate_distances(race_duration)
         winning_distances = find_winning_distances(race_distance, possible_distances)
-        product *= len(winning_distances) 
+        product *= len(winning_distances)
 
     return product
 
