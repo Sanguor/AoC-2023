@@ -1,5 +1,5 @@
 import re
-import numpy as np
+import math
 
 def read_file_and_strip_newlines(file_path):
     with open(file_path, 'r') as file:
@@ -27,149 +27,129 @@ def get_seeds_and_map(data):
     return seeds, maps
 
 
-# def find_max(seeds, maps):
-#     max_value = max(seeds)
-
-#     for i in maps:
-#         for j in maps[i]:
-#             temp_max = max([j[0] + j[2], j[1] + j[2]]) - 1
-#             max_value = temp_max if max_value < temp_max else max_value
-
-#     return max_value
-
-
-# def find_min(seeds, maps):
-#     if 0 in seeds:
-#         seeds.remove(0)
-#     min_value = min(seeds)
-
-#     for i in maps:
-#         for j in maps[i]:
-#             if j[0] != 0 and j[1] != 0:
-#                 temp_min = min([j[0], j[1]])
-#                 min_value = temp_min if min_value > temp_min else min_value
-
-#     return min_value
-
-
-# def find_max_interval(maps):
-#     max_value = 0
-
-#     for i in maps:
-#         for j in maps[i]:
-#             max_value = j[2] if max_value < j[2] else max_value
-
-#     return max_value
-
-
 def solve_part1(maps, first_list):
 
     final_array = [first_list]
     for i in maps:
         new_array = final_array[-1].copy()
         for j in maps[i]:
-            # print(j)
             source_range = [i for i in range(j[1], j[1] + j[2])]
             destination_range = [i for i in range(j[0], j[0] + j[2])]
-
-            # print('source_range =', source_range)
-            # print('destination_range =', destination_range)
-
-            # print('final_array[-1] = ', final_array[-1])
-
-
             for value_to_replace, new_value in zip(source_range, destination_range):
                 index_to_replace = final_array[-1].index(value_to_replace)
-                # if new_array == list(range(0, 100)):
-                # print('value_to_replace =', value_to_replace)
-                # print('new_value =', new_value)
-                # print('index_to_replace= ', index_to_replace)
                 new_array[index_to_replace] = new_value
-                # print('_______________________________________________')
-
-            # print('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
-        # print('len(new_array) =', len(new_array))
         final_array.append(new_array)
-        # print('*****************************************************')
-
-    # print('len(final_array) =', len(final_array))
-    # print('final_array[0] =', final_array[0])
-    # print('final_array[1] =', final_array[1])
-
-    # print('final_array =', final_array[-1])
-    print('final_array =', final_array[1])
     seed = 0
     return seed
 
+
+def split_range(chunk_size, range_size):
+    number_of_chunks = math.ceil(range_size / chunk_size)
+    # last_chunk_size = range_size % chunk_size
+
+    return number_of_chunks
 
 def solve_part1_v2(maps, seeds):
 
     final_array = [seeds]
 
     for i in maps:
-        # print('i =', i)
         new_array = final_array[-1].copy()
         for j in maps[i]:
             source_range = range(j[1], j[1] + j[2])
             destination_range = range(j[0], j[0] + j[2])
-            # print('source_range =', source_range)
             for value_to_replace in final_array[-1]:
-                # print('value_to_replace =', value_to_replace)
                 if value_to_replace in source_range:
                     source_index = source_range.index(value_to_replace)
                     new_value = destination_range[source_index]
                     index_to_replace = final_array[-1].index(value_to_replace)
                     new_array[index_to_replace] = new_value
-            # print('_____________________________________')
         final_array.append(new_array)
-    print('final_array =', final_array)
-    # print('final_array[0] =', final_array[0])
-    # print('final_array[-1] =', final_array[-1])
+
+    # print('final_array[-1] = ', final_array[-1])
 
     lowest_location = min(final_array[-1])
-    print('lowest_location = ', lowest_location)
-    # lowest_location_index = final_array[-1].index(lowest_location)
-    # print('lowest_location_index = ', lowest_location_index)
-
-    # result = final_array[0][lowest_location_index]
-    # print('result = ', result)
 
     return lowest_location
 
 
-def solve_part2(lines):
-    sum = 0
-    return sum
+def solve_part2(maps, seeds):
+
+
+    # print('maps =', maps)
+    # print('seeds =', seeds)
+
+    final_array = [seeds]
+
+    for i in maps:
+        new_array = final_array[-1].copy()
+        for j in maps[i]:
+            source_range = range(j[1], j[1] + j[2])
+            destination_range = range(j[0], j[0] + j[2])
+            for value_to_replace in final_array[-1]:
+                if value_to_replace in source_range:
+                    source_index = source_range.index(value_to_replace)
+                    new_value = destination_range[source_index]
+                    index_to_replace = final_array[-1].index(value_to_replace)
+                    new_array[index_to_replace] = new_value
+        final_array.append(new_array)
+        if len(final_array[-1]) > 10:
+            print('len(final_array[-1] =', len(final_array[-1]))
+        if len(final_array) > 10:
+            print('len(final_array =', len(final_array))
+
+
+    lowest_location = min(final_array[-1])
+
+    return lowest_location
 
 
 def main(path):
     lines = read_file_and_strip_newlines(path)
     seeds, maps = get_seeds_and_map(lines)
-    # min_value = find_min(seeds, maps)  # 25 112 293
-    # max_value = find_max(seeds, maps) # 4 294 967 295
-    # max_interval = find_max_interval(maps) # 889 292 891
-    # max possible : 536 870 912
+    part1 = solve_part1_v2(maps, seeds)
 
-    # first_list = list(range(0, max_value + 1))
-    # part1 = solve_part1(maps, first_list)
-    # part1 = solve_part1_v2(maps, seeds)
 
-    seed_sum = 0
+    # seed_ranges = []
+    # for index, seed in enumerate(seeds):
+    #     if index%2 != 0:
+    #         seed_ranges.append(list(range(seeds[index - 1], seeds[index - 1] + seed)))
 
-    seed_ranges = []
+    # possible_results = []
+    # for seeds in seed_ranges:
+    #     possible_results.append(solve_part2(maps, seeds))
+
+    # # print('possible_results =', possible_results)
+    # part2 = min(possible_results)
+
+    ### NEW PART 2 ###
+    print('__________________________________ START NEW PART 2 __________________________________')
+    chunk_size = 10
+
+    # seeds, maps = get_seeds_and_map(lines)
+    part2 = 999999999999999999999999999999999999
+
     for index, seed in enumerate(seeds):
+        print('seed =', seed)
         if index%2 != 0:
-            seed_ranges.append(list(range(seeds[index - 1], seeds[index - 1] + seed)))
+            range_start = seeds[index - 1]
+            range_size = seed
 
-    print('seed_ranges = ', seed_ranges)
-    possible_results = []
-    for seeds in seed_ranges:
-        possible_results.append(solve_part1_v2(maps, seeds))
+            number_of_chunks = split_range(chunk_size, range_size)
 
+            for i in range(0, number_of_chunks):
+                my_range = range(range_start + i * chunk_size, range_start + i * chunk_size + chunk_size)
+                chunked_list = []
+                for j in my_range:
+                    if j < range_start + range_size:
+                        chunked_list.append(j)
+                result = solve_part2(maps, chunked_list)
 
-    part2 = min(possible_results)
+                part2 =  result if result < part2 else part2
+                # possible_results.append(solve_part2(maps, chunked_list))
 
-    return 'part1', part2
+    # part2 = min(possible_results)
+    return part1, part2
 
 
 if __name__ == "__main__":
