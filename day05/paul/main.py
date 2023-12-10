@@ -145,7 +145,9 @@ def main(path):
                         chunked_list.append(j)
                 result = solve_part2(maps, chunked_list)
 
-                part2 =  result if result < part2 else part2
+                if result < part2:
+                    part2 =  result
+                    print('part2 =', part2)
                 # possible_results.append(solve_part2(maps, chunked_list))
 
     # part2 = min(possible_results)
