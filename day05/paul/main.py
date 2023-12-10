@@ -137,7 +137,11 @@ def main(path):
 
             number_of_chunks = split_range(chunk_size, range_size)
 
+            count = 1
             for i in range(0, number_of_chunks):
+                if i > number_of_chunks // 1000 * count:
+                    print(f'{0.1 * count}%')
+                    count += 1
                 my_range = range(range_start + i * chunk_size, range_start + i * chunk_size + chunk_size)
                 chunked_list = []
                 for j in my_range:
